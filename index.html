@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <meta charset="utf-8"> 
+	<title>Video bg</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+	 <div class="video-container">
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src="video_bg/MP4/Fire-Snow.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="video_bg/WEBM/Fire-Snow.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+        <div class="poster hidden">
+            <img src="video_bg/Snapshots/Fire-Snow.jpg" alt="">
+        </div>
+    </div>
+		<div class="container">
+			<div class="row logo_cont">
+				<div class="col-md-12">
+					<p>Content Description</p>
+					<h2>See the world through our product</h2>
+					<h4>Get The Most Converstion Rate Easily.</h4>
+					<picture>
+					  <source type="image/svg+xml" srcset="images/video_icon.svg">
+					  <img src="images/video_icon.png" alt="Описание">
+					</picture>	
+				</div>
+			</div>
+			<div class="row form_cont">
+				<div class="col-md-12">
+					<form action="">
+						<input type="text" placeholder="Your Name">
+						<input type="text" placeholder="Email Address">
+						<button>Subscribe »</button>
+					</form>
+					<p>* We don’t share your personal <br> info with anyone Check out our <span class="green_text">Policy</span> & for more information <span class="green_text">Contact Us</span>.</p>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="head_foot">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-lg-7">
+						  <img src="images/layer_5.png" alt="Описание">
+						<ul>
+							<li><a href="#">services</a></li>
+							<li><a href="#">about</a></li>
+							<li><a href="#">portfolio</a></li>
+							<li><a href="#">team</a></li>
+							<li><a href="#">pricing</a></li>
+							<li><a href="#">testimonial</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 ">
+						<img src="images/fb.png" alt="">
+						<img src="images/twitter'.png" alt="">
+						<img src="images/Ellipse.png" alt="">
+					</div>
+				</div>
+			</div>
+	</section>
+	<section class="main">
+		<div class="container">
+			<div class="row logo_block">
+				<div class="col-md-12">
+					<img src="images/smile.png" alt="">
+					<p>Product Features</p>
+					<h3>What we <span class="green_text"> do </span></h3>
+				</div>
+			</div>
+			<div class="row info_block">
+					<div class="col-md-4">
+						<img src="images/Smartphone.png" alt="">
+						<h4>Fully Responsive</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur inventore ea veritatis repudiandae, assumenda dolorem impedit sint suscipit dolore quidem?</p>
+					</div>
+					<div class="col-md-4">
+						<img src="images/Table.png" alt="">
+						<h4>Easy to Customize</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo sit quis eius autem ratione nisi dicta placeat molestiae eaque tenetur.</p>
+					</div>
+					<div class="col-md-4">
+						<img src="images/bulb.png" alt="">
+						<h4>Direct Support</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium quidem enim fugit voluptas ducimus quas nostrum, in laboriosam culpa.</p>
+					</div>
+			</div>
+		</div>
+	</section>
+		<script>
+			//jQuery is required to run this code
+$( document ).ready(function() {
+
+    scaleVideoContainer();
+
+    initBannerVideoSize('.video-container .poster img');
+    initBannerVideoSize('.video-container .filter');
+    initBannerVideoSize('.video-container video');
+
+    $(window).on('resize', function() {
+        scaleVideoContainer();
+        scaleBannerVideoSize('.video-container .poster img');
+        scaleBannerVideoSize('.video-container .filter');
+        scaleBannerVideoSize('.video-container video');
+    });
+
+});
+
+function scaleVideoContainer() {
+
+    var height = $(window).height() + 5;
+    var unitHeight = parseInt(height) + 'px';
+    $('.homepage-hero-module').css('height',unitHeight);
+
+}
+
+function initBannerVideoSize(element){
+
+    $(element).each(function(){
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
+    });
+
+    scaleBannerVideoSize(element);
+
+}
+
+function scaleBannerVideoSize(element){
+
+    var windowWidth = $(window).width(),
+    windowHeight = $(window).height() + 5,
+    videoWidth,
+    videoHeight;
+
+    // console.log(windowHeight);
+
+    $(element).each(function(){
+        var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+        $(this).width(windowWidth);
+
+        if(windowWidth < 1000){
+            videoHeight = windowHeight;
+            videoWidth = videoHeight / videoAspectRatio;
+            $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+            $(this).width(videoWidth).height(videoHeight);
+        }
+
+        $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+    });
+}
+		</script>
+</body>
+</html>
